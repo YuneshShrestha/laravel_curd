@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\StudentController;
+use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // sapp data leko student model bata
+    $students = Student::all();
+    // sapp data compact garaera pass gareko
+    return view('student.index', compact('students'));
 });
+// sapp link banauxa student agadi name bhako
+Route::resource('student',StudentController::class);
