@@ -67,7 +67,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = Student::find($id);
+        return view('student.edit',compact('student'));
     }
 
     /**
@@ -79,7 +80,17 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
+            //update hunae code
+            $student =  Student::find($id);
+            $student->name = $request->name;
+            $student->roll = $request->roll;
+            $student->address = $request->address;
+            $student->mobile = $request->mobile;
+            $student->save();
+            return redirect('/');
+    
+
     }
 
     /**
@@ -90,6 +101,8 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = Student::find($id);
+        $student->delete();
+        return redirect('/');
     }
 }

@@ -14,16 +14,23 @@
                             <th>Action</th>
                         </tr>
                         {{-- students bhaneko pass gareko value and data bhnaeko affaulae bhkhhar create graeko var joslae student ko euta euta data linxa --}}
-                        @foreach ($students as $data)
+                        @foreach ($students as  $count=> $data)
+                           
                             <tr>
-                                <td>{{ $data->id }}</td>
+                                <td>{{ ++$count }}</td>
                                 <td>{{ $data->name }}</td>
                                 <td>{{ $data->roll }}</td>
                                 <td>{{ $data->address }}</td>
                                 <td>{{ $data->mobile }}</td>
                                 <td>
-                                    <a href="" class="btn btn-success">Edit</a>
-                                    <a href="/student/{{ $data->id }}" class="btn btn-secondary">View</a>
+                                    <form action="student/{{ $data->id }}" method="POST">
+                                        @method('delete')
+                                        @csrf
+                                        <a href="student/{{ $data->id }}/edit" class="btn btn-success">Edit</a>
+                                        <a href="/student/{{ $data->id }}" class="btn btn-secondary">View</a>
+                               
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
