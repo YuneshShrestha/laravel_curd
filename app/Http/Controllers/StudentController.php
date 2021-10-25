@@ -35,6 +35,12 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        // save huna bhanda agadi validation
+        $data= $request->validate([
+            'name'=>'required',
+            'roll'=>'required',
+            'address'=>'required',
+        ]);
         //save hunae code
         $student = new Student();
         $student->name = $request->name;
