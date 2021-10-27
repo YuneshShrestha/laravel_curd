@@ -47,6 +47,16 @@ class StudentController extends Controller
         $student->roll = $request->roll;
         $student->address = $request->address;
         $student->mobile = $request->mobile;
+        if($request->hasFile('image')){
+            // file name is not as expected
+            $temp = $request->image;
+            // updating file name getClientOriginalName gives original name of file...time is for creating unique time stamp
+            $filename = time() . $temp->getClientOriginalName();
+            // moving image to public folder
+            $temp->move('images/',$filename);
+            // saving image directory to db
+            $student->image = 'images/'.$filename;
+        }
         $student->save();
         return redirect()->back();
 
@@ -93,6 +103,16 @@ class StudentController extends Controller
             $student->roll = $request->roll;
             $student->address = $request->address;
             $student->mobile = $request->mobile;
+            if($request->hasFile('image')){
+                // file name is not as expected
+                $temp = $request->image;
+                // updating file name getClientOriginalName gives original name of file...time is for creating unique time stamp
+                $filename = time() . $temp->getClientOriginalName();
+                // moving image to public folder
+                $temp->move('images/',$filename);
+                // saving image directory to db
+                $student->image = 'images/'.$filename;
+            }
             $student->save();
             return redirect('/');
     

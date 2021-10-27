@@ -7,6 +7,7 @@
                     <table class="table table-striped">
                         <tr>
                             <th>SN</th>
+                            <th>Image</th>
                             <th>Name</th>
                             <th>Roll</th>
                             <th>Address</th>
@@ -15,9 +16,14 @@
                         </tr>
                         {{-- students bhaneko pass gareko value and data bhnaeko affaulae bhkhhar create graeko var joslae student ko euta euta data linxa --}}
                         @foreach ($students as  $count=> $data)
-                           
                             <tr>
                                 <td>{{ ++$count }}</td>
+                                <td><img src="{{ asset( $data->image ) }}" 
+                                    width="200px" 
+                                    height="200px" 
+                                     class="rounded-circle"
+                                     style="object-fit: cover">
+                                    </td>
                                 <td>{{ $data->name }}</td>
                                 <td>{{ $data->roll }}</td>
                                 <td>{{ $data->address }}</td>

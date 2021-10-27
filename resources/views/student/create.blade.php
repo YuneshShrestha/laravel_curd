@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form action="/student" method="POST">
+                <form action="/student" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="name">Name *</label>
@@ -30,7 +30,10 @@
                         <label for="mobile">Mobile (opt)</label>
                         <input id="mobile" class="form-control" type="text" name="mobile" value="{{ old('mobile') }}">
                     </div>
-                   
+                    <div class="form-group">
+                        <label for="image">Image (opt)</label>
+                        <input id="image" class="form-control" type="file" name="image" value="{{ old('image') }}">
+                    </div>
                     <button type="submit">Save</button>
                 </form>
             </div>
